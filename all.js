@@ -217,14 +217,18 @@ function deleteCartItem(cartId) {
 
     let cartId = e.target.getAttribute('data-theId');
     let prName = e.target.getAttribute('data-name');
+    let delPr = `刪除「${prName}」成功！`;
 
     if( cartId == null  ) {
         return
     }
-    alert(`刪除「${prName}」成功！`);
-
+    Swal.fire({
+      position: 'top-center',
+      icon: 'success',
+      title: delPr,
+      showConfirmButton: false
+    })
     deleteCartItem(cartId);
-
   }); 
 
 
@@ -232,7 +236,13 @@ function deleteCartItem(cartId) {
 function delAllcart() {
     axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/carts`)
     .then(function(response){
-        alert("刪除購物車成功！");
+      
+        Swal.fire({
+          position: 'top-center',
+          icon: 'success',
+          title: '刪除購物車成功',
+          showConfirmButton: false
+        })
         getcartPr();
     })
 }
