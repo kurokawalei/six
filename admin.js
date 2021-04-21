@@ -12,6 +12,7 @@ const config = {
 let orderAry =[];
 const list = document.querySelector('.renderlist');
 const delAllBtn = document.querySelector('.discardAllBtn');
+const loading = document.querySelector('.center');
 
 //取得後台名單API
 function getOrderList() {
@@ -23,6 +24,7 @@ axios.get(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_pach}
     console.log(orderAry);
     renOrdList();
     loadC3();
+    loading.innerHTML = "";
   
 }).catch(function(er){
 console.log(er)
@@ -95,7 +97,7 @@ function renOrdList(){
 function orderStates( orderId , states ) {
 
   let newStates;
-  if( states == true ){
+  if( states == 'true' ){
     newStates=false;
   }else{
     newStates=true;
@@ -112,7 +114,7 @@ function orderStates( orderId , states ) {
   axios.put(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_pach}/orders` , Sdata , config )
   .then(function(res){
 
-     alert('訂單已處理')
+     alert('訂單狀態已更新！')
      getOrderList();
   })
 
@@ -180,6 +182,8 @@ delAllBtn.addEventListener('click', delAll );
 function loadC3() {
 
     let total = {};
+    let colorObj = {};
+    let colorCode = ["#ff9800", "#db880e", "#f8ac3c"];
 
 
 
@@ -193,14 +197,24 @@ function loadC3() {
             total[productItem.category] += productItem.price*productItem.quantity;
           }
         })
-      })
 
-      console.log(total);
+       
+      })
+     
 
       let categoryAry = Object.keys(total);
 
+      console.log(categoryAry)
+
+      categoryAry.forEach((item, i) => {
+        colorObj[item] = colorCode[i];
+
+      })
+      console.log(colorObj)
+
 
     let newData = [];
+
 
     categoryAry.forEach((item,index) =>{
      
@@ -209,10 +223,15 @@ function loadC3() {
         ary.push( total[item] );
         newData.push(ary);
        
-
     } )
 
-   
+
+    
+ 
+
+  //   c3DataTitle.forEach((item, i) => {
+  //     dataColor[item] = colorCode[i];
+  // })
 
       // C3.js
       let chart = c3.generate({
@@ -220,6 +239,7 @@ function loadC3() {
         data: {
             type: "pie",
             columns: newData,
+            colors: colorObj
             // colors:{
              
             //     "Antony 雙人床架":"#9D7FEA",

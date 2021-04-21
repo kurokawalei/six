@@ -57,7 +57,9 @@ q:before, q:after {
   content: '';
   content: none;
 }
-
+thead {
+    background: #eee;
+}
 table {
   border-collapse: collapse;
   border-spacing: 0;
@@ -88,9 +90,9 @@ body {
   max-width: 1110px;
   margin: 0 auto;
 }
-
+.center { text-align: center;}
 .topBar {
-  border-bottom: 40px solid #000000;
+  border-bottom: 40px solid #ff9800;
   margin-bottom: 30px;
 }
 
@@ -123,7 +125,7 @@ body {
 }
 
 .topBar a:hover {
-  color: #6A33F8;
+  color: #f44336;
   -webkit-transform: scale(1.05);
           transform: scale(1.05);
 }
@@ -824,7 +826,7 @@ body {
 <body>
     <nav class="topBar">
         <div class="wrap">
-            <h1><a href="#" class="logo">WOWOROOM</a></h1>
+            <h1><a href="#" class="logo">KUROKAWA</a></h1>
             <span class="material-icons menuToggle">
                 menu
             </span>
@@ -855,6 +857,7 @@ body {
                     </tr>
                 </thead>
                 <tbody class="renderlist">
+             
                     <!-- <tr>
                         <td>10088377474</td>
                         <td>
@@ -912,7 +915,9 @@ body {
                             <input type="button" class="delSingleOrder-Btn" value="刪除">
                         </td>
                     </tr> -->
-
+                   
+                   <div class="center"> <img src="Rolling-1s-200px.svg" style="margin: 0 auto;"></div>
+                 
                 </tbody>
               
             </table>
