@@ -1,6 +1,6 @@
 
 
-
+const six_api = 'livejs-api.hexschool.io';
 const api_pach = 'kurokawa';
 const list = document.querySelector('.productWrap');
 const selectPr = document.querySelector('.productSelect');
@@ -16,11 +16,14 @@ let cartary=[];
 
 
 
+
 //初始化
 
 function init() {
     getPrList();
     getcartPr();
+   
+
 }
 
 
@@ -28,9 +31,11 @@ init();
 
 
 
+
+
 //抓產品列表
 function getPrList() {
-axios.get(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/products`)
+axios.get(`https://${six_api}/api/livejs/v1/customer/${api_pach }/products`)
 .then(function (response) {
     // console.log('資料有回傳了');  
     // console.log(response.data.products);
@@ -39,6 +44,9 @@ axios.get(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pa
      rederPr(data);
   });
 }
+
+
+
 
 
 //組合HTML
@@ -78,10 +86,8 @@ selectPr.addEventListener('change' , function(e) {
     let categoryName = e.target.value;
 
   if( categoryName == "全部" ) {
-
     rederPr();
     return
-
   }
 
 
@@ -109,7 +115,7 @@ selectPr.addEventListener('change' , function(e) {
 
 function getcartPr() {
 
-    axios.get(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${ api_pach}/carts`)
+    axios.get(`https://${six_api}/api/livejs/v1/customer/${ api_pach}/carts`)
     .then(function(res){
   //   console.log(res.data.carts);
      cartary = res.data.carts;
@@ -179,7 +185,7 @@ total.innerHTML =  `NT$${carttotal}`
 function editCartNum( num , id ) {
 
     if (num > 0) {
-        let url = `https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/carts`;
+        let url = `https://${six_api}/api/livejs/v1/customer/${api_pach }/carts`;
         let data = {
           data: {
             id: id,
@@ -204,7 +210,7 @@ function editCartNum( num , id ) {
 //刪除購物車API
 
 function deleteCartItem(cartId) {
-    axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/carts/${cartId}`)
+    axios.delete(`https://${six_api}/api/livejs/v1/customer/${api_pach }/carts/${cartId}`)
     .then(function (response) {
     //  alert("刪除單筆購物車成功！");
       getcartPr();
@@ -234,7 +240,7 @@ function deleteCartItem(cartId) {
 
   //刪除全部項目API
 function delAllcart() {
-    axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/carts`)
+    axios.delete(`https://${six_api}/api/livejs/v1/customer/${api_pach }/carts`)
     .then(function(response){
       
         Swal.fire({
@@ -264,7 +270,7 @@ function addCartPr(id){
     })
 
 
-    axios.post(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/carts` , {
+    axios.post(`https://${six_api}/api/livejs/v1/customer/${api_pach }/carts` , {
         data:{
             "productId": id,
             "quantity": numCheck
@@ -299,7 +305,7 @@ list.addEventListener('click',function(e){
 //表單API
 
 function sendfrom (){
-    axios.post(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/orders`)
+    axios.post(`https://${six_api}/api/livejs/v1/customer/${api_pach }/orders`)
     .then( function(res){
 
     } )
@@ -374,7 +380,7 @@ function createOrder(ary) {
 
 
 
-    axios.post(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/customer/${api_pach }/orders` ,  data )
+    axios.post(`https://${six_api}/api/livejs/v1/customer/${api_pach }/orders` ,  data )
     .then(function(res){
         Swal.fire({
           position: 'top-center',

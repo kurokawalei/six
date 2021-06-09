@@ -38,9 +38,7 @@ getOrderList();
 
 function renOrdList(){
 
-
-
-  let str ="";
+   let str ="";
 
    orderAry.forEach( (item,index) => {
 
@@ -55,7 +53,7 @@ function renOrdList(){
     item.products.forEach( (pr,i) => {
       prStr += `<div>${ pr.title } x ${ pr.quantity}</div>`
     
-    } )
+    })
 
    
 
