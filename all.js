@@ -15,15 +15,11 @@ let cartary=[];
 
 
 
-
-
 //初始化
 
 function init() {
     getPrList();
     getcartPr();
-   
-
 }
 
 

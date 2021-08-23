@@ -1,4 +1,5 @@
 const api_pach = 'kurokawa';
+const six_pach = 'livejs-api.hexschool.io';
 const config = {
     headers:{
         Authorization:"sNSFHkuxupYBy2nL1EZHexiDb652"
@@ -17,7 +18,7 @@ const loading = document.querySelector('.center');
 //取得後台名單API
 function getOrderList() {
 
-axios.get(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_pach}/orders` , config )
+axios.get(`https://${six_pach}/api/livejs/v1/admin/${api_pach}/orders` , config )
 .then(function(res){
    // console.log(res)
     orderAry = res.data.orders;
@@ -109,7 +110,7 @@ function orderStates( orderId , states ) {
     }
   }
   
-  axios.put(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_pach}/orders` , Sdata , config )
+  axios.put(`https://${six_pach}/api/livejs/v1/admin/${api_pach}/orders` , Sdata , config )
   .then(function(res){
 
      alert('訂單狀態已更新！')
@@ -124,7 +125,7 @@ function orderStates( orderId , states ) {
 
 function delOrderList(orderId) {
 
-    axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_pach}/orders/${orderId}` , config )
+    axios.delete(`https://${six_pach}/api/livejs/v1/admin/${api_pach}/orders/${orderId}` , config )
     .then( function(res){
         alert('刪除單筆成功');
         getOrderList();
@@ -163,7 +164,7 @@ if(  getCLass == "orderStatus" ) {
 
 function delAll(e){
     e.preventDefault() ;
-    axios.delete(`https://hexschoollivejs.herokuapp.com/api/livejs/v1/admin/${api_pach}/orders`  , config )
+    axios.delete(`https://${six_pach}/api/livejs/v1/admin/${api_pach}/orders`  , config )
     .then( function(res){
         alert('已全部刪除');
         getOrderList();
